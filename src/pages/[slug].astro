@@ -15,6 +15,7 @@ const isGoKart = project.slug === 'go-kart-v2';
 const isRoboChess = project.slug === 'robochess';
 const isOmniframe = project.slug === 'omniframe';
 const isDaylight = project.slug === 'daylight';
+const isVitrail = project.slug === 'vitrail';
 const BASE_URL = import.meta.env.BASE_URL;
 
 // Gallery images for Go-Kart
@@ -183,6 +184,70 @@ const daylightImages = [
           ) : isOmniframe ? (
             <>
               <h3 class="text-xl font-bold mb-6" style="font-family: 'Faculty Glyphic', sans-serif;">
+                Hardware
+              </h3>
+              <div class="grid grid-cols-2 gap-6">
+                <div>
+                  <img
+                    src={publicPath('Omniframe/omni_diagram.png')}
+                    alt="Omniframe system diagram"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+                <div>
+                  <img
+                    src={publicPath('Omniframe/v4_board.webp')}
+                    alt="Omniframe v4 board"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+              </div>
+              <div class="mt-8 grid grid-cols-2 gap-6">
+                <div>
+                  <img
+                    src={publicPath('Omniframe/main_sch.jpg')}
+                    alt="Omniframe main schematic"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+                <div>
+                  <img
+                    src={publicPath('Omniframe/final_board_layout.png')}
+                    alt="Omniframe final board layout"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-6 mt-12" style="font-family: 'Faculty Glyphic', sans-serif;">
+                Materials
+              </h3>
+              <div class="grid grid-cols-3 gap-6 mb-8">
+                <div>
+                  <img
+                    src={publicPath('Omniframe/frame.webp')}
+                    alt="Omniframe frame"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+                <div>
+                  <img
+                    src={publicPath('Omniframe/backboard.webp')}
+                    alt="Omniframe backboard"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+                <div>
+                  <img
+                    src={publicPath('Omniframe/diffuser.webp')}
+                    alt="Omniframe diffuser"
+                    class="rounded-2xl w-full"
+                  />
+                </div>
+              </div>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                The frame is CNC machined from acacia wood. The backboard for V3 was resin-printed, while V4's backboard was CNC machined from ABS to develop it closer toward injection molding. The diffuser is 60% translucent and coated with a diffusing spray to hide the solar cells while allowing sufficient light transmission to continuously charge the device.
+              </p>
+              <h3 class="text-xl font-bold mb-6 mt-12" style="font-family: 'Faculty Glyphic', sans-serif;">
                 Specifications
               </h3>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-lg">
@@ -310,6 +375,39 @@ const daylightImages = [
                 </div>
               </div>
             </>
+          ) : isVitrail ? (
+            <div class="grid grid-cols-3 gap-6">
+              <div class="space-y-2">
+                <img
+                  src={publicPath('Vitrail/kab230-removebg-preview.png')}
+                  alt="Dayton Audio KAB-230v4"
+                  class="rounded-2xl w-full vitrail-tech-image"
+                />
+                <p class="text-sm text-gray-400 text-center">
+                  Dayton Audio KAB-230v4 2 x 30W Class D Audio Amplifier Board with aptX HD Bluetooth 5.0
+                </p>
+              </div>
+              <div class="space-y-2">
+                <img
+                  src={publicPath('Vitrail/bms-removebg-preview.png')}
+                  alt="Dayton Audio KAB-BE"
+                  class="rounded-2xl w-full vitrail-tech-image"
+                />
+                <p class="text-sm text-gray-400 text-center">
+                  Dayton Audio KAB-BE 18650 Battery Extension Board
+                </p>
+              </div>
+              <div class="space-y-2">
+                <img
+                  src={publicPath('Vitrail/rs100-removebg-preview.png')}
+                  alt="Dayton Audio RS100-4"
+                  class="rounded-2xl w-full vitrail-tech-image"
+                />
+                <p class="text-sm text-gray-400 text-center">
+                  Dayton Audio RS100-4 4" Reference Full-Range Driver 4 Ohm
+                </p>
+              </div>
+            </div>
           ) : (
             <p class="text-gray-400">Technical details and diagrams coming soon.</p>
           )}
@@ -390,6 +488,173 @@ const daylightImages = [
                 The optics design proved to be more complex than I initially anticipated, requiring resources and expertise beyond what I could provide independently. I reached out to potential collaborators at the university and explored partnerships with private companies specializing in optical systems, but unfortunately, these efforts didn't materialize into a viable path forward for the project.
               </p>
             </>
+          ) : isVitrail ? (
+            <>
+              <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="space-y-2">
+                  <img
+                    src={publicPath('Vitrail/gluing.jpg')}
+                    alt="Enclosure assembly gluing process"
+                    class="rounded-2xl w-full vitrail-process-image"
+                  />
+                  <p class="text-sm text-gray-400 text-center">
+                    Enclosure assembly gluing process
+                  </p>
+                </div>
+                <div class="space-y-2">
+                  <img
+                    src={publicPath('Vitrail/before_oil.jpg')}
+                    alt="All enclosure parts prepared for surface finishing"
+                    class="rounded-2xl w-full vitrail-process-image"
+                  />
+                  <p class="text-sm text-gray-400 text-center">
+                    All enclosure parts prepared for surface finishing with a high-quality furniture oil.
+                  </p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-6 mb-6">
+                <img
+                  src={publicPath('Vitrail/old_open.jpg')}
+                  alt="Old open"
+                  class="rounded-2xl w-full"
+                />
+                <img
+                  src={publicPath('Vitrail/old_closed.jpg')}
+                  alt="Old closed"
+                  class="rounded-2xl w-full"
+                />
+              </div>
+              <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                I used these Dayton Audio ND105-4 4" Aluminum Cone Midbass Neo Driver 4 Ohm drivers originally, but later upgraded to the RS100 drivers and also made a new front baffle that was 1 mm thinner to make the grid sit more flush with the design.
+              </p>
+              <div class="grid grid-cols-2 gap-6 items-start">
+                <div class="space-y-2">
+                  <img
+                    src={publicPath('Vitrail/newbaffle.jpg')}
+                    alt="New front baffle"
+                    class="rounded-2xl w-full vitrail-baffle-image"
+                  />
+                  <p class="text-sm text-gray-400 text-center">
+                    New front baffle CNC machined from MDF.
+                  </p>
+                </div>
+                <div>
+                  <video
+                    src={publicPath('Vitrail/bafflecnc.mp4')}
+                    controls
+                    autoplay
+                    loop
+                    class="rounded-2xl w-full vitrail-baffle-video"
+                  ></video>
+                </div>
+              </div>
+            </>
+          ) : isOmniframe ? (
+            <>
+              <h3 class="text-xl font-bold mb-4" style="font-family: 'Faculty Glyphic', sans-serif;">
+                V1
+              </h3>
+              <p class="text-lg text-gray-300 leading-relaxed mb-8">
+                The first version was done with an acrylic backplate and different boards soldered together on a resin printed holder and had individual solar cells soldered together on nickel strips.
+              </p>
+              <div class="grid grid-cols-3 gap-6 mb-16">
+                <div class="h-96 overflow-hidden rounded-2xl">
+                  <img
+                    src={publicPath('Omniframe/v1.webp')}
+                    alt="Omniframe v1"
+                    class="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+                <div class="h-96 overflow-hidden rounded-2xl">
+                  <img
+                    src={publicPath('Omniframe/v1_inside.webp')}
+                    alt="Omniframe v1 inside"
+                    class="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+                <div class="h-96 overflow-hidden rounded-2xl">
+                  <img
+                    src={publicPath('Omniframe/v1_hardware.webp')}
+                    alt="Omniframe v1 hardware"
+                    class="w-full h-full object-cover rounded-2xl"
+                  />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-4" style="font-family: 'Faculty Glyphic', sans-serif;">
+                V2
+              </h3>
+              <div class="w-full">
+                <div class="grid grid-cols-2 gap-6 mb-6">
+                  <div class="h-96 overflow-hidden rounded-2xl">
+                    <video
+                      src={publicPath('Omniframe/v2.mp4')}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="w-full h-full object-cover"
+                    ></video>
+                  </div>
+                  <div class="flex items-center">
+                    <p class="text-lg text-gray-300 leading-relaxed">
+                      The form factor turned closer to the final product, and had a better diffuser made from special coated translucent acrylic. And second-generation custom PCB that skipped the display driver IC that the first generation had and instead used low-level driver firmware to drive the display directly with the ESP.
+                    </p>
+                  </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                  <div class="h-96 overflow-hidden rounded-2xl">
+                    <video
+                      src={publicPath('Omniframe/cnc.mp4')}
+                      autoplay
+                      loop
+                      muted
+                      playsinline
+                      class="w-full h-full object-cover"
+                    ></video>
+                  </div>
+                  <div class="h-96 overflow-hidden rounded-2xl">
+                    <img
+                      src={publicPath('Omniframe/v2_hardware.webp')}
+                      alt="Omniframe v2 hardware"
+                      class="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+              <h3 class="text-xl font-bold mb-4 mt-16" style="font-family: 'Faculty Glyphic', sans-serif;">
+                V3 & V4
+              </h3>
+              <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="h-110 overflow-hidden rounded-2xl">
+                  <img
+                    src={publicPath('Omniframe/v3_drawing.webp')}
+                    alt="Omniframe v3 drawing"
+                    class="w-full h-full object-cover"
+                  />
+                </div>
+                <div class="flex items-center">
+                  <p class="text-lg text-gray-300 leading-relaxed">
+                    DFM and DFA were the major focuses of V3 and V4. The total number of components was significantly reduced and the backboard was designed for injection molding. The hardware assembly featured a unified solar cell, an improved main logic board with refined power architecture, production opimizations, and SD card holder, and a secondary board with button and USB-C port, connected via ribbon cable.
+                  </p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-6">
+                <div class="h-106 overflow-hidden rounded-2xl">
+                  <img
+                    src={publicPath('Omniframe/v4_backboard.webp')}
+                    alt="Omniframe v4 backboard"
+                    class="w-full h-full object-cover brightness-70"
+                  />
+                </div>
+                <div class="h-106 overflow-hidden rounded-2xl">
+                  <img
+                    src={publicPath('Omniframe/v4_hardware_assembly.webp')}
+                    alt="Omniframe v4 hardware assembly"
+                    class="w-full h-full object-cover brightness-80"
+                  />
+                </div>
+              </div>
+            </>
           ) : (
             <p class="text-gray-400">Assembly photos and development process coming soon.</p>
           )}
@@ -456,6 +721,25 @@ const daylightImages = [
   .menu-btn.active {
     background-color: rgba(255, 255, 255, 0.2);
     border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .vitrail-tech-image {
+    filter: brightness(0.8);
+  }
+
+  .vitrail-baffle-video {
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .vitrail-baffle-image {
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .vitrail-process-image {
+    height: 400px;
+    object-fit: cover;
   }
 </style>
 
