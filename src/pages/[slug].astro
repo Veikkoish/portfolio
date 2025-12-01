@@ -16,6 +16,8 @@ const isRoboChess = project.slug === 'robochess';
 const isOmniframe = project.slug === 'omniframe';
 const isDaylight = project.slug === 'daylight';
 const isVitrail = project.slug === 'vitrail';
+const isMemoryPlayer = project.slug === 'memory-player';
+const isHeyMac = project.slug === 'hey-mac';
 const BASE_URL = import.meta.env.BASE_URL;
 
 // Gallery images for Go-Kart
@@ -139,6 +141,23 @@ const daylightImages = [
                 </div>
               )
             ))
+          ) : isHeyMac && project.video ? (
+            <div class="flex gap-12 items-center">
+              <div class="w-1/2">
+                <video
+                  id="hey-mac-video"
+                  src={project.video}
+                  muted
+                  playsinline
+                  class="rounded-2xl w-full"
+                ></video>
+              </div>
+              <div class="w-1/2">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                  {project.description}
+                </p>
+              </div>
+            </div>
           ) : (
             <div class="flex gap-12 items-center">
               <div class="w-1/2">
@@ -408,6 +427,21 @@ const daylightImages = [
                 </p>
               </div>
             </div>
+          ) : isMemoryPlayer ? (
+            <div class="flex gap-12 items-center">
+              <div class="w-1/2">
+                <img
+                  src={publicPath('Memory Player/parts.jpeg')}
+                  alt="Memory Player parts"
+                  class="rounded-2xl w-full"
+                />
+              </div>
+              <div class="w-1/2">
+                <p class="text-lg text-gray-300 leading-relaxed">
+                  This is easily the smallest physical size product I've ever built. To save time and money, I deciced to use the Adafruit Feather ThinkInk board instead of making a custom PCB. The device also features a 2000 mAh LiPo battery for a years-long battery life, a USB-C port for charging and reprogramming, a pinhole reset button in the back and two buttons in the front for scrolling.
+                </p>
+              </div>
+            </div>
           ) : (
             <p class="text-gray-400">Technical details and diagrams coming soon.</p>
           )}
@@ -655,6 +689,107 @@ const daylightImages = [
                 </div>
               </div>
             </>
+          ) : isMemoryPlayer ? (
+            <>
+              <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="space-y-4">
+                  <img
+                    src={publicPath('Memory Player/braces.png')}
+                    alt="Braces"
+                    class="rounded-2xl w-full"
+                  />
+                  <p class="text-sm text-gray-400 text-center">
+                    I had a cheap USB-C breakout that didn't end up working due to wrongly wired CC-pins. For the new breakout board I had to make a new internal brace (the green part).
+                  </p>
+                </div>
+                <div class="space-y-4">
+                  <img
+                    src={publicPath('Memory Player/new_brace.png')}
+                    alt="New brace"
+                    class="rounded-2xl w-full"
+                  />
+                  <p class="text-sm text-gray-400 text-center">
+                    New breakout soldered and attached to new brace along with buttons.
+                  </p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="space-y-4">
+                  <video
+                    src={publicPath('Memory Player/buttons.MOV')}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="rounded-2xl"
+                    style="height: 70vh; max-width: 80%; margin: 0 auto; display: block;"
+                  ></video>
+                  <p class="text-sm text-gray-400 text-center">
+                    The front plate has two buttons.
+                  </p>
+                </div>
+                <div class="space-y-4">
+                  <video
+                    src={publicPath('Memory Player/battery.MOV')}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="rounded-2xl"
+                    style="height: 70vh; max-width: 80%; margin: 0 auto; display: block;"
+                  ></video>
+                  <p class="text-sm text-gray-400 text-center">
+                    Checking the board voltage after installing the battery.
+                  </p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-6 mb-6">
+                <div class="space-y-4">
+                  <video
+                    src={publicPath('Memory Player/fit.MOV')}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="rounded-2xl"
+                    style="height: 70vh; max-width: 80%; margin: 0 auto; display: block;"
+                  ></video>
+                  <p class="text-sm text-gray-400 text-center">
+                    The tolerances I had designed turned out to have been way too optimistic. The front plate stuck out from the enclosure slightly.
+                  </p>
+                </div>
+                <div class="space-y-4">
+                  <video
+                    src={publicPath('Memory Player/silicone.mp4')}
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    class="rounded-2xl"
+                    style="height: 70vh; max-width: 80%; margin: 0 auto; display: block;"
+                  ></video>
+                  <p class="text-sm text-gray-400 text-center">
+                    To counter the poorly fitting front plate I put black silicone glue all around it. Once dry, I scratched it slightly with 400 grit sandpaper which made its color match with the front plate.
+                  </p>
+                </div>
+              </div>
+              <div class="mb-6">
+                <div class="space-y-4">
+                  <img
+                    src={publicPath('Memory Player/oil.png')}
+                    alt="Oil finish"
+                    class="rounded-2xl"
+                    style="width: 40vw; object-fit: cover; margin: 0 auto; display: block;"
+                  />
+                  <p class="text-sm text-gray-400 text-center">
+                    The oak enclosure was finished with two coats of colorless furniture oil.
+                  </p>
+                </div>
+              </div>
+              <p class="text-lg text-gray-300 leading-relaxed">
+                Routing the USB-C port to the outside of the enclosure turned out to take a huge amount of time because of the spatial constraints. If I were to build this again, I would implement everything necessary from Adafruit's design to a better form factor for the enclosure. This would eliminate the need for the secondary Type-C port and would allow to put the battery next to the board as opposed under it. This would save almost half of the thickness of the device. Maybe I'll do this for another anniversary years from now to also compare how far E-Ink technology has come.
+              </p>
+            </>
           ) : (
             <p class="text-gray-400">Assembly photos and development process coming soon.</p>
           )}
@@ -695,6 +830,33 @@ const daylightImages = [
                 class="rounded-2xl w-full"
               />
             ))}
+          </div>
+        ) : isMemoryPlayer ? (
+          <div class="grid grid-cols-2 gap-6">
+            <img
+              src={publicPath('Memory Player/size_comparison.jpeg')}
+              alt="Size comparison"
+              class="rounded-2xl w-full"
+              style="height: 50vh; object-fit: cover;"
+            />
+            <img
+              src={publicPath('Memory Player/final_angle.jpeg')}
+              alt="Final angle"
+              class="rounded-2xl w-full"
+              style="height: 50vh; object-fit: cover;"
+            />
+            <img
+              src={publicPath('Memory Player/back.jpeg')}
+              alt="Back"
+              class="rounded-2xl w-full"
+              style="height: 50vh; object-fit: cover;"
+            />
+            <img
+              src={publicPath('Memory Player/final_otter.jpeg')}
+              alt="Final otter"
+              class="rounded-2xl w-full"
+              style="height: 50vh; object-fit: cover;"
+            />
           </div>
         ) : (
           <p class="text-gray-400">Gallery images coming soon.</p>
@@ -760,5 +922,16 @@ const daylightImages = [
         section?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // Hey Mac video handling
+    const heyMacVideo = document.getElementById('hey-mac-video');
+    if (heyMacVideo) {
+      // Start playing after 1s delay
+      setTimeout(() => {
+        heyMacVideo.play().catch(() => {
+          // Auto-play might be blocked, that's okay
+        });
+      }, 1000);
+    }
   });
 </script>

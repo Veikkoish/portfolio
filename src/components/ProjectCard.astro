@@ -104,11 +104,18 @@ const skillCategories = skills.map(s => s.category).join(',');
           const video = entry.target;
           if (!video.hasAttribute('data-played')) {
             video.setAttribute('data-played', 'true');
-            setTimeout(() => {
-              video.play().catch(() => {
-                // Ignore play errors (e.g., if user hasn't interacted with page)
-              });
-            }, 500);
+            video.play().then(() => {
+              // Pause immediately and wait 1s before starting playback
+              video.pause();
+              video.currentTime = 0;
+              setTimeout(() => {
+                video.play().catch(() => {
+                  // Ignore play errors
+                });
+              }, 1000);
+            }).catch(() => {
+              // Ignore play errors (e.g., if user hasn't interacted with page)
+            });
           }
         }
       });
