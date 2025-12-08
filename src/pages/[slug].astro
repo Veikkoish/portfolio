@@ -833,7 +833,22 @@ const daylightImages = [
         <h2 class="text-3xl font-bold mb-8" style="font-family: 'Faculty Glyphic', sans-serif;">
           Gallery
         </h2>
-        {isGoKart ? (
+        {isOmniframe ? (
+          <div class="space-y-6">
+            <p class="text-lg text-gray-300 leading-relaxed">
+              For more information about the project, including technical specifications, repositories, and the latest updates, visit the official project website.
+            </p>
+            <a
+              href="https://omniframe.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block text-lg mt-4"
+              style="color:rgb(69, 120, 164); text-decoration: underline;"
+            >
+              Visit omniframe.org →
+            </a>
+          </div>
+        ) : isGoKart ? (
           <div class="grid grid-cols-2 gap-6">
             {goKartImages.map((img) => (
               <img
