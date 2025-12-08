@@ -11,9 +11,10 @@ const PROJECT_FOLDERS = [
   'RoboChess',
   'Hey Mac',
   'Lampiron',
-  'Pocket Veila',
+  'Memory Player',
   'Sunwhisper',
-  'Vitrail'
+  'Vitrail',
+  'Verify',
 ];
 
 async function isDirectory(path) {

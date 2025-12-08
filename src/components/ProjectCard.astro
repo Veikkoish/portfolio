@@ -30,7 +30,7 @@ const skillCategories = skills.map(s => s.category).join(',');
   <div class="absolute top-6 right-6 text-base text-gray-400" style="font-family: 'Inter', sans-serif;">
     {projectType} • {year}{inProgress ? ' (in progress)' : ''}
   </div>
-  <div class="flex px-12 py-16 gap-8">
+  <div class={`flex px-12 gap-8 ${slug === 'hey-mac' ? 'py-8' : 'py-16'}`}>
     <div class="w-1/2 flex items-center justify-center">
       {video ? (
         <video
@@ -42,7 +42,7 @@ const skillCategories = skills.map(s => s.category).join(',');
           data-video-src={video}
         ></video>
       ) : (
-        <img src={image} alt={title} class="max-w-full max-h-full object-contain" />
+        <img src={image} alt={title} class="max-w-full max-h-full object-contain rounded-2xl" />
       )}
     </div>
     <div class="w-1/2 flex flex-col justify-center gap-4">

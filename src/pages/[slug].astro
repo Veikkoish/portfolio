@@ -18,6 +18,7 @@ const isDaylight = project.slug === 'daylight';
 const isVitrail = project.slug === 'vitrail';
 const isMemoryPlayer = project.slug === 'memory-player';
 const isHeyMac = project.slug === 'hey-mac';
+const isVerify = project.slug === 'verify';
 const BASE_URL = import.meta.env.BASE_URL;
 
 // Gallery images for Go-Kart
@@ -32,20 +33,20 @@ const goKartImages = [
 
 // Gallery images for RoboChess
 const roboChessImages = [
-  'front.jpg',
-  'rightup.jpg',
-  'showcase.jpg',
-  'switch.jpg',
-  'presentation.jpg',
-  'award.jpg',
+  'front.webp',
+  'rightup.webp',
+  'showcase.webp',
+  'switch.webp',
+  'presentation.webp',
+  'award.webp',
 ];
 
 // Process media for RoboChess
 const roboChessProcess = [
-  { file: 'early_render.jpg', caption: 'Early render of showing the gantry and rough hardware placement.', type: 'image', fullSize: true },
-  { file: 'tape.jpg', caption: 'The dark squares were made by applying wood filler to laser-engraved grooves. The tape was for protecting other areas.', type: 'image', fullSize: false },
-  { file: 'assembly.jpg', caption: 'Hardware getting assembled', type: 'image', fullSize: false },
-  { file: 'Sensor_array.jpg', caption: 'The hall-effect sensor matrix was installed under the pieces to detect piece locations to enable more game-modes.', type: 'image', fullSize: false },
+  { file: 'early_render.webp', caption: 'Early render of showing the gantry and rough hardware placement.', type: 'image', fullSize: true },
+  { file: 'tape.webp', caption: 'The dark squares were made by applying wood filler to laser-engraved grooves. The tape was for protecting other areas.', type: 'image', fullSize: false },
+  { file: 'assembly.webp', caption: 'Hardware getting assembled', type: 'image', fullSize: false },
+  { file: 'Sensor_array.webp', caption: 'The hall-effect sensor matrix was installed under the pieces to detect piece locations to enable more game-modes.', type: 'image', fullSize: false },
   { file: 'calibration.mp4', caption: 'Calibration test of the assembled gantry before placement to the enclosure. The board uses limit switches to zero its axis at every boot up similar to a 3D-printer.', type: 'video', fullSize: false },
 ];
 
@@ -72,7 +73,7 @@ const daylightImages = [
     <div class="flex justify-center gap-4 mb-16">
       <button class="menu-btn active" data-section="overview">Overview</button>
       {!isGoKart && <button class="menu-btn" data-section="technology">Technology</button>}
-      {!isGoKart && <button class="menu-btn" data-section="process">Process</button>}
+      {!isGoKart && !isVerify && <button class="menu-btn" data-section="process">Process</button>}
       <button class="menu-btn" data-section="gallery">Gallery</button>
     </div>
 
@@ -120,6 +121,33 @@ const daylightImages = [
                 />
               </div>
             </>
+          ) : isVerify && project.overview ? (
+            project.overview.map((section) => (
+              section.image ? (
+                <div class={`flex gap-12 items-center ${section.imagePosition === 'right' ? 'flex-row-reverse' : ''}`}>
+                  <div class="w-1/2">
+                    <img src={section.image} alt={project.title} class="rounded-2xl w-full" />
+                  </div>
+                  <div class="w-1/2">
+                    <p class="text-lg text-gray-300 leading-relaxed whitespace-pre-line">
+                      {section.description}
+                    </p>
+                    <a href="#" class="text-lg mt-4 inline-block" style="color: #a855f7;">
+                      GitHub Repository
+                    </a>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <p class="text-lg text-gray-300 leading-relaxed whitespace-pre-line">
+                    {section.description}
+                  </p>
+                  <a href="#" class="text-lg mt-4 inline-block" style="color: #a855f7;">
+                    GitHub Repository
+                  </a>
+                </div>
+              )
+            ))
           ) : project.overview ? (
             project.overview.map((section) => (
               section.image ? (
@@ -194,7 +222,7 @@ const daylightImages = [
               </h3>
               <div class="mt-8 flex justify-center">
                 <img
-                  src={publicPath('RoboChess/Robo_diagram.png')}
+                  src={publicPath('RoboChess/Robo_diagram.webp')}
                   alt="RoboChess System Diagram"
                   class="rounded-2xl w-[70%]"
                 />
@@ -208,7 +236,7 @@ const daylightImages = [
               <div class="grid grid-cols-2 gap-6">
                 <div>
                   <img
-                    src={publicPath('Omniframe/omni_diagram.png')}
+                    src={publicPath('Omniframe/omni_diagram.webp')}
                     alt="Omniframe system diagram"
                     class="rounded-2xl w-full"
                   />
@@ -224,14 +252,14 @@ const daylightImages = [
               <div class="mt-8 grid grid-cols-2 gap-6">
                 <div>
                   <img
-                    src={publicPath('Omniframe/main_sch.jpg')}
+                    src={publicPath('Omniframe/v4_hardware_assembly.webp')}
                     alt="Omniframe main schematic"
                     class="rounded-2xl w-full"
                   />
                 </div>
                 <div>
                   <img
-                    src={publicPath('Omniframe/final_board_layout.png')}
+                    src={publicPath('Omniframe/final_board_layout.webp')}
                     alt="Omniframe final board layout"
                     class="rounded-2xl w-full"
                   />
@@ -320,7 +348,7 @@ const daylightImages = [
                 <div>
                   <h4 class="text-lg font-semibold mb-3 text-gray-200">Main Logic Board</h4>
                   <img
-                    src={publicPath('Daylight/main_sch.jpg')}
+                    src={publicPath('Daylight/main_sch.webp')}
                     alt="Main board schematic"
                     class="rounded-2xl w-full"
                   />
@@ -329,7 +357,7 @@ const daylightImages = [
                   <div>
                     <h4 class="text-lg font-semibold mb-3 text-gray-200">Connector Board</h4>
                     <img
-                      src={publicPath('Daylight/connboard_sch.jpg')}
+                      src={publicPath('Daylight/connboard_sch.webp')}
                       alt="Connection board schematic"
                       class="rounded-2xl w-full"
                     />
@@ -337,7 +365,7 @@ const daylightImages = [
                   <div>
                     <h4 class="text-lg font-semibold mb-3 text-gray-200">Power Supply Unit</h4>
                     <img
-                      src={publicPath('Daylight/psu_sch.jpg')}
+                      src={publicPath('Daylight/psu_sch.webp')}
                       alt="PSU schematic"
                       class="rounded-2xl w-full"
                     />
@@ -347,7 +375,7 @@ const daylightImages = [
                   <div class="w-3/4">
                     <h4 class="text-lg font-semibold mb-3 text-gray-200">Touchpad Board</h4>
                     <img
-                      src={publicPath('Daylight/touch_sch.jpg')}
+                      src={publicPath('Daylight/touch_sch.webp')}
                       alt="Touch pad schematic"
                       class="rounded-2xl w-full"
                     />
@@ -398,7 +426,7 @@ const daylightImages = [
             <div class="grid grid-cols-3 gap-6">
               <div class="space-y-2">
                 <img
-                  src={publicPath('Vitrail/kab230-removebg-preview.png')}
+                  src={publicPath('Vitrail/kab230-removebg-preview.webp')}
                   alt="Dayton Audio KAB-230v4"
                   class="rounded-2xl w-full vitrail-tech-image"
                 />
@@ -408,7 +436,7 @@ const daylightImages = [
               </div>
               <div class="space-y-2">
                 <img
-                  src={publicPath('Vitrail/bms-removebg-preview.png')}
+                  src={publicPath('Vitrail/bms-removebg-preview.webp')}
                   alt="Dayton Audio KAB-BE"
                   class="rounded-2xl w-full vitrail-tech-image"
                 />
@@ -418,7 +446,7 @@ const daylightImages = [
               </div>
               <div class="space-y-2">
                 <img
-                  src={publicPath('Vitrail/rs100-removebg-preview.png')}
+                  src={publicPath('Vitrail/rs100-removebg-preview.webp')}
                   alt="Dayton Audio RS100-4"
                   class="rounded-2xl w-full vitrail-tech-image"
                 />
@@ -431,7 +459,7 @@ const daylightImages = [
             <div class="flex gap-12 items-center">
               <div class="w-1/2">
                 <img
-                  src={publicPath('Memory Player/parts.jpeg')}
+                  src={publicPath('Memory Player/parts.webp')}
                   alt="Memory Player parts"
                   class="rounded-2xl w-full"
                 />
@@ -442,6 +470,10 @@ const daylightImages = [
                 </p>
               </div>
             </div>
+          ) : isVerify ? (
+            <p class="text-lg text-gray-300 leading-relaxed">
+              The React-based extension injects a highlighter into the active tab via the Chrome Scripting API, extracts the page text, and streams analysis results back to the UI. The frontend, built with Tailwind CSS, communicates with a Node.js/Express backend that extracts key claims, checks them first against the Google Fact Check API, then uses Google's Gemini model with web search for corroboration. Results arrive via Server-Sent Events, so claims and highlights appear incrementally on the page, with inline hover/click details and a summary panel in the popup. Additional features include searching for additional sources on individual claims and performing deep research on broader topics.
+            </p>
           ) : (
             <p class="text-gray-400">Technical details and diagrams coming soon.</p>
           )}
@@ -449,7 +481,7 @@ const daylightImages = [
       )}
 
       <!-- Process Section -->
-      {!isGoKart && (
+      {!isGoKart && !isVerify && (
         <section id="process" class="section-content scroll-mt-32">
           <h2 class="text-3xl font-bold mb-8" style="font-family: 'Faculty Glyphic', sans-serif;">
             Process
@@ -484,7 +516,7 @@ const daylightImages = [
             <>
               <div class="space-y-6 mb-8 flex flex-col items-center">
                 <img
-                  src={publicPath('Daylight/dev board.jpg')}
+                  src={publicPath('Daylight/dev board.webp')}
                   alt="Development board"
                   class="rounded-2xl w-1/2"
                 />
@@ -498,21 +530,21 @@ const daylightImages = [
               <div class="grid grid-cols-3 gap-6">
                 <div class="h-64 overflow-hidden rounded-2xl">
                   <img
-                    src={publicPath('Daylight/waveguide_dev1.jpg')}
+                    src={publicPath('Daylight/waveguide_dev1.webp')}
                     alt="Waveguide development setup"
                     class="w-full h-full object-cover"
                   />
                 </div>
                 <div class="h-64 overflow-hidden rounded-2xl">
                   <img
-                    src={publicPath('Daylight/waveguide_dev2.jpg')}
+                    src={publicPath('Daylight/waveguide_dev2.webp')}
                     alt="Waveguide development setup"
                     class="w-full h-full object-cover"
                   />
                 </div>
                 <div class="h-64 overflow-hidden rounded-2xl">
                   <img
-                    src={publicPath('Daylight/waveguide_dev3.jpg')}
+                    src={publicPath('Daylight/waveguide_dev3.webp')}
                     alt="Waveguide development setup"
                     class="w-full h-full object-cover"
                   />
@@ -527,7 +559,7 @@ const daylightImages = [
               <div class="grid grid-cols-2 gap-6 mb-6">
                 <div class="space-y-2">
                   <img
-                    src={publicPath('Vitrail/gluing.jpg')}
+                    src={publicPath('Vitrail/gluing.webp')}
                     alt="Enclosure assembly gluing process"
                     class="rounded-2xl w-full vitrail-process-image"
                   />
@@ -537,7 +569,7 @@ const daylightImages = [
                 </div>
                 <div class="space-y-2">
                   <img
-                    src={publicPath('Vitrail/before_oil.jpg')}
+                    src={publicPath('Vitrail/before_oil.webp')}
                     alt="All enclosure parts prepared for surface finishing"
                     class="rounded-2xl w-full vitrail-process-image"
                   />
@@ -548,12 +580,12 @@ const daylightImages = [
               </div>
               <div class="grid grid-cols-2 gap-6 mb-6">
                 <img
-                  src={publicPath('Vitrail/old_open.jpg')}
+                  src={publicPath('Vitrail/old_open.webp')}
                   alt="Old open"
                   class="rounded-2xl w-full"
                 />
                 <img
-                  src={publicPath('Vitrail/old_closed.jpg')}
+                  src={publicPath('Vitrail/old_closed.webp')}
                   alt="Old closed"
                   class="rounded-2xl w-full"
                 />
@@ -564,7 +596,7 @@ const daylightImages = [
               <div class="grid grid-cols-2 gap-6 items-start">
                 <div class="space-y-2">
                   <img
-                    src={publicPath('Vitrail/newbaffle.jpg')}
+                    src={publicPath('Vitrail/newbaffle.webp')}
                     alt="New front baffle"
                     class="rounded-2xl w-full vitrail-baffle-image"
                   />
@@ -682,7 +714,7 @@ const daylightImages = [
                 </div>
                 <div class="h-106 overflow-hidden rounded-2xl">
                   <img
-                    src={publicPath('Omniframe/v4_hardware_assembly.webp')}
+                    src={publicPath('Omniframe/v4_allhw.webp')}
                     alt="Omniframe v4 hardware assembly"
                     class="w-full h-full object-cover brightness-80"
                   />
@@ -694,7 +726,7 @@ const daylightImages = [
               <div class="grid grid-cols-2 gap-6 mb-6">
                 <div class="space-y-4">
                   <img
-                    src={publicPath('Memory Player/braces.png')}
+                    src={publicPath('Memory Player/braces.webp')}
                     alt="Braces"
                     class="rounded-2xl w-full"
                   />
@@ -704,7 +736,7 @@ const daylightImages = [
                 </div>
                 <div class="space-y-4">
                   <img
-                    src={publicPath('Memory Player/new_brace.png')}
+                    src={publicPath('Memory Player/new_brace.webp')}
                     alt="New brace"
                     class="rounded-2xl w-full"
                   />
@@ -776,7 +808,7 @@ const daylightImages = [
               <div class="mb-6">
                 <div class="space-y-4">
                   <img
-                    src={publicPath('Memory Player/oil.png')}
+                    src={publicPath('Memory Player/oil.webp')}
                     alt="Oil finish"
                     class="rounded-2xl"
                     style="width: 40vw; object-fit: cover; margin: 0 auto; display: block;"
@@ -834,29 +866,51 @@ const daylightImages = [
         ) : isMemoryPlayer ? (
           <div class="grid grid-cols-2 gap-6">
             <img
-              src={publicPath('Memory Player/size_comparison.jpeg')}
+              src={publicPath('Memory Player/size_comparison.webp')}
               alt="Size comparison"
               class="rounded-2xl w-full"
               style="height: 50vh; object-fit: cover;"
             />
             <img
-              src={publicPath('Memory Player/final_angle.jpeg')}
+              src={publicPath('Memory Player/final_angle.webp')}
               alt="Final angle"
               class="rounded-2xl w-full"
               style="height: 50vh; object-fit: cover;"
             />
             <img
-              src={publicPath('Memory Player/back.jpeg')}
+              src={publicPath('Memory Player/back.webp')}
               alt="Back"
               class="rounded-2xl w-full"
               style="height: 50vh; object-fit: cover;"
             />
             <img
-              src={publicPath('Memory Player/final_otter.jpeg')}
+              src={publicPath('Memory Player/final_otter.webp')}
               alt="Final otter"
               class="rounded-2xl w-full"
               style="height: 50vh; object-fit: cover;"
             />
+          </div>
+        ) : isVerify ? (
+          <div class="flex gap-6 items-start">
+          <img
+              src={publicPath('Verify/popup.webp')}
+              alt="Verify popup"
+              class="rounded-2xl"
+              style="width: 25vw; height: auto;"
+            />
+            <img
+              src={publicPath('Verify/claims.webp')}
+              alt="Verify claims"
+              class="rounded-2xl"
+              style="width: 30vw;"
+            />
+            <img
+              src={publicPath('Verify/details.webp')}
+              alt="Verify details"
+              class="rounded-2xl"
+              style="width: 20vw;"
+            />
+            
           </div>
         ) : (
           <p class="text-gray-400">Gallery images coming soon.</p>
