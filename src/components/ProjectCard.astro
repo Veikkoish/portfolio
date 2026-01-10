@@ -27,7 +27,7 @@ const skillCategories = skills.map(s => s.category).join(',');
   data-categories={categoryString}
   data-skill-categories={skillCategories}
 >
-  <div class="hidden md:block absolute top-6 right-6 text-base text-gray-400" style="font-family: 'Inter', sans-serif;">
+  <div class="hidden md:block absolute top-6 right-6 text-base text-gray-400">
     {projectType} • {year}{inProgress ? ' (in progress)' : ''}
   </div>
   <div class={`flex flex-col md:flex-row px-4 md:px-12 gap-4 md:gap-8 ${slug === 'hey-mac' ? 'py-4 md:py-8' : 'py-6 md:py-16'}`}>
@@ -46,10 +46,10 @@ const skillCategories = skills.map(s => s.category).join(',');
       )}
     </div>
     <div class="w-full md:w-1/2 flex flex-col justify-center gap-3 md:gap-4">
-      <h2 class="text-2xl md:text-4xl font-bold" style="font-family: 'Faculty Glyphic', sans-serif;">
+      <h2 class="text-2xl md:text-4xl font-bold font-display">
         {title}
       </h2>
-      <p class="text-sm md:hidden text-gray-400" style="font-family: 'Inter', sans-serif;">
+      <p class="text-sm md:hidden text-gray-400">
         {projectType} • {year}{inProgress ? ' (in progress)' : ''}
       </p>
       <p class="text-base md:text-lg text-gray-400 leading-relaxed">

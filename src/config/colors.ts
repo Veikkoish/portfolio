@@ -1,8 +1,8 @@
 export const colors = {
   bgDark: '#161514',
-  hardware: '#0066ff',
-  software: '#00cc52',
-  mechanical: '#ff6600',
+  hardware: '#2563ff',    // vivid blue
+  software: '#10a081',    // bright green
+  mechanical: '#da7400',  // punchy orange
   text: '#f5f5f5',
   textSecondary: '#a0a0a0',
   cardBg: '#1a1a1a',

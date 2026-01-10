@@ -95,7 +95,10 @@ const processMedia = [
             {item.type === 'video' ? (
               <video
                 src={publicPath(`RoboChess/${item.file}`)}
-                controls
+                autoplay
+                loop
+                muted
+                playsinline
                 class={`rounded-2xl ${item.fullSize ? 'w-full' : 'w-full md:w-[70%]'}`}
               ></video>
             ) : (

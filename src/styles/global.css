@@ -1,25 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@350&display=swap');
 @import "tailwindcss";
 
 @layer theme {
   :root {
     /* Color Palette */
-    --color-bg-dark: #161514;
-    --color-hardware: #0066ff;
-    --color-software: #00cc52;
-    --color-mechanical: #ff6600;
-    --color-text: #f5f5f5;
+    --color-bg-dark: #121014;
+    --color-hardware: #6b8cbb;
+    --color-software: #00e5a0;
+    --color-mechanical: #ff7a30;
+    --color-text: #f0f0f0;
     --color-text-secondary: #a0a0a0;
     --color-card-bg: #1a1a1a;
+    
+    /* Fonts */
+    --font-body: 'Montserrat', sans-serif;
+    --font-display: 'Faculty Glyphic', sans-serif;
+    --line-height-body: 1.5;
   }
 }
 
 body {
   background-color: var(--color-bg-dark);
   color: var(--color-text);
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   letter-spacing: 0.01em;
+  line-height: var(--line-height-body);
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  pointer-events: none;
+  z-index: -1;
 }
 
 h1 {
@@ -31,5 +48,9 @@ h2 {
 }
 
 .font-display {
-  font-family: 'Faculty Glyphic', sans-serif;
+  font-family: var(--font-display);
+}
+
+.leading-relaxed {
+  line-height: var(--line-height-body);
 }
