@@ -61,25 +61,37 @@ const { project } = Astro.props;
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
       <SectionHeading>Gallery</SectionHeading>
-      <div class="flex flex-col md:flex-row gap-4 md:gap-6 items-start">
-        <img
-          src={publicPath('Verify/popup.webp')}
-          alt="Verify popup"
-          class="rounded-2xl w-full md:w-auto"
-          style="max-width: 100%;"
-        />
-        <img
-          src={publicPath('Verify/claims.webp')}
-          alt="Verify claims"
-          class="rounded-2xl w-full md:w-auto"
-          style="max-width: 100%;"
-        />
-        <img
-          src={publicPath('Verify/details.webp')}
-          alt="Verify details"
-          class="rounded-2xl w-full md:w-auto"
-          style="max-width: 100%;"
-        />
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
+        <div class="space-y-2">
+          <img
+            src={publicPath('Verify/popup.webp')}
+            alt="Verify popup"
+            class="rounded-2xl w-full h-auto object-contain"
+          />
+          <p class="text-sm text-gray-400 text-center">
+            The Verify extension appears as a compact menu in the top-right corner of the page, staying out of the way while you read.
+          </p>
+        </div>
+        <div class="space-y-2">
+          <img
+            src={publicPath('Verify/claims.webp')}
+            alt="Verify claims"
+            class="rounded-2xl w-full h-auto object-contain"
+          />
+          <p class="text-sm text-gray-400 text-center">
+            Every factual claim on the page is highlighted in green, yellow, or red to indicate whether it’s verified, uncertain, or disputed. Hovering over a highlight reveals a concise popover with the most important context and sources.
+          </p>
+        </div>
+        <div class="space-y-2">
+          <img
+            src={publicPath('Verify/details.webp')}
+            alt="Verify details"
+            class="rounded-2xl w-full h-auto object-contain"
+          />
+          <p class="text-sm text-gray-400 text-center">
+            Clicking a highlighted claim opens a full analysis panel, with a richer breakdown of the evidence plus shortcuts to visit the most reliable source or explore additional coverage from across the web.
+          </p>
+        </div>
       </div>
     </section>
 
