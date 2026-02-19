@@ -20,25 +20,23 @@ const { name, category } = Astro.props;
   .skill-tag {
     display: inline-block;
     white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     box-shadow:
-      0 2px 6px rgba(18, 16, 20, 0.45),
-      inset 1px 1px 2px rgba(255, 255, 255, 0.08),
-      inset -1px -1px 2px rgba(18, 16, 20, 0.35);
+      inset 0 0 8px rgba(200, 200, 200, 0.05),
+      0 2px 8px rgba(0, 0, 0, 0.2);
   }
+
   .skill-tag[data-category="hardware"] {
     color: var(--color-hardware);
     background-color: color-mix(in srgb, var(--color-hardware) 18%, transparent);
-    border: 1.5px solid color-mix(in srgb, var(--color-hardware) 80%, transparent);
   }
   .skill-tag[data-category="software"] {
     color: var(--color-software);
     background-color: color-mix(in srgb, var(--color-software) 18%, transparent);
-    border: 1.5px solid color-mix(in srgb, var(--color-software) 65%, transparent);
   }
   .skill-tag[data-category="mechanical"] {
     color: var(--color-mechanical);
     background-color: color-mix(in srgb, var(--color-mechanical) 18%, transparent);
-    border: 1.5px solid color-mix(in srgb, var(--color-mechanical) 65%, transparent);
   }
 </style>
 

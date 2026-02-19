@@ -23,7 +23,7 @@ const skillCategories = skills.map(s => s.category).join(',');
 <a
   id={slug}
   href={`${import.meta.env.BASE_URL}/${slug}`}
-  class="project-card w-[calc(100%-2rem)] md:w-[70vw] min-h-0 md:min-h-[400px] mx-auto my-4 md:my-8 rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer relative block scroll-mt-32"
+  class="project-card w-[calc(100%-2rem)] md:w-[70vw] min-h-0 md:min-h-[400px] mx-auto my-4 md:my-8 rounded-3xl overflow-hidden transition-all duration-300 cursor-pointer relative block scroll-mt-32"
   data-categories={categoryString}
   data-skill-categories={skillCategories}
 >
@@ -66,12 +66,15 @@ const skillCategories = skills.map(s => s.category).join(',');
 
 <style>
   .project-card {
-    background-color: var(--color-bg-dark);
-    border: 3px solid rgb(99, 99, 99);
-    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--color-bg-dark);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                border-color 0.3s ease;
     box-shadow:
-      8px 8px 24px rgba(18, 16, 20, 0.6),
-      inset 2px 2px 6px rgba(240, 240, 240, 0.04);
+      inset 0px 0px 12px rgba(200, 200, 200, 0.08),
+      0 4px 16px rgba(0, 0, 0, 0.25),
+      0 1px 4px rgba(0, 0, 0, 0.15);
     text-decoration: none;
     color: inherit;
     outline: none;
@@ -82,8 +85,12 @@ const skillCategories = skills.map(s => s.category).join(',');
   }
 
   .project-card:hover {
-    transform: scale(1.02);
-    border-color: rgb(150, 150, 150);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow:
+    inset 0px 0px 12px rgba(240, 240, 240, 0.08),
+      0 12px 40px rgba(0, 0, 0, 0.35),
+      0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.12);
   }
 
   .project-card.hidden {
