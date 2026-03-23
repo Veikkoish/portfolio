@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Demo: Dot Grid (Static)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at bottom center, rgba(0, 0, 0, 0.4), transparent 65%),
+      linear-gradient(to bottom, #0d0d0f, #141518);
+  }
+  canvas { display: block; position: fixed; top: 0; left: 0; }
+  .content {
+    position: relative; z-index: 1;
+    display: flex; align-items: center; justify-content: center;
+    height: 100vh; padding: 1rem;
+  }
+  .project-card {
+    width: calc(100% - 2rem);
+    max-width: 70vw;
+    min-height: 400px;
+    margin: auto;
+    border-radius: 1.5rem;
+    background: #15161B;
+    /*background: #151518;*/
+    border: 1px solid rgba(160, 170, 255, 0.07);
+    box-shadow:
+      0 28px 80px rgba(0, 0, 0, 0.6),
+      0 4px 18px rgba(0, 0, 0, 0.55),
+      0 1px 0 rgba(140, 150, 220, 0.06);
+    padding: 2rem 2.5rem;
+    color: #eeeef3;
+    font-family: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+  .project-title {
+    font-family: 'Faculty Glyphic', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    letter-spacing: 0.03em;
+  }
+  .project-meta {
+    font-size: 0.9rem;
+    color: #7a7a90;
+  }
+  .project-description {
+    font-size: 1rem;
+    color: #7a7a90;
+    line-height: 1.5;
+    max-width: 38rem;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .tag {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(10, 10, 16, 0.9);
+  }
+  .tag.hardware {
+    border-color: rgba(21, 130, 226, 0.6);
+    color: #9ecbff;
+    background: radial-gradient(circle at 0 0, rgba(21, 130, 226, 0.18), transparent 55%);
+  }
+  .tag.software {
+    border-color: rgba(40, 174, 89, 0.6);
+    color: #9ff2b8;
+    background: radial-gradient(circle at 0 0, rgba(40, 174, 89, 0.18), transparent 55%);
+  }
+  .tag.mechanical {
+    border-color: rgba(233, 113, 49, 0.6);
+    color: #ffd1b0;
+    background: radial-gradient(circle at 0 0, rgba(233, 113, 49, 0.18), transparent 55%);
+  }
+  .button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+  }
+  .btn {
+    position: relative;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: radial-gradient(circle at 0 0, rgba(140, 150, 220, 0.07), transparent 60%), #181922;
+    color: #eeeef3;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.18s ease-out, box-shadow 0.18s ease-out, border-color 0.18s ease-out, background 0.18s ease-out;
+  }
+  .btn-primary {
+    border-color: rgba(21, 130, 226, 0.9);
+    background:
+      radial-gradient(circle at 0 0, rgba(21, 130, 226, 0.3), transparent 60%),
+      linear-gradient(135deg, #1c6fd0, #1582e2);
+  }
+  .btn-secondary {
+    border-color: rgba(140, 145, 180, 0.4);
+    background:
+      radial-gradient(circle at 0 0, rgba(140, 145, 220, 0.1), transparent 60%),
+      #181922;
+    color: #c8cad8;
+  }
+  .btn:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      0 10px 25px rgba(0, 0, 0, 0.45),
+      0 0 0 1px rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.28);
+  }
+  .btn:active {
+    transform: translateY(0);
+    box-shadow:
+      0 4px 12px rgba(0, 0, 0, 0.4);
+  }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="content">
+  <div class="project-card"></div>
+</div>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+const FOREGROUND = { spacing: 40, radius: 1.2, alpha: 0.22 };
+const BACKGROUND = { spacing: 52, radius: 0.9, alpha: 0.14 };
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function drawLayer({ spacing, radius, alpha }, offsetX, offsetY) {
+  const cols = Math.ceil(canvas.width / spacing) + 2;
+  const rows = Math.ceil(canvas.height / spacing) + 2;
+  ctx.fillStyle = `rgba(195, 200, 225, ${alpha})`;
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      const x = col * spacing + offsetX;
+      const y = row * spacing + offsetY;
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+
+function render(time) {
+  const t = time * 0.00003;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  const bgOffsetX = Math.sin(t * 0.6) * 30;
+  const bgOffsetY = Math.cos(t * 0.4) * 20;
+  const fgOffsetX = Math.sin(t * 0.9 + 1.3) * 40;
+  const fgOffsetY = Math.cos(t * 0.7 + 0.7) * 28;
+
+  drawLayer(BACKGROUND, bgOffsetX, bgOffsetY);
+  drawLayer(FOREGROUND, fgOffsetX, fgOffsetY);
+
+  requestAnimationFrame(render);
+}
+
+window.addEventListener('resize', resize);
+resize();
+requestAnimationFrame(render);
+</script>
+</body>
+</html>

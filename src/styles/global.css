@@ -5,7 +5,7 @@
 @layer theme {
   :root {
     /* Color Palette */
-    --color-bg-dark: #121014;
+    --color-bg-dark: #121115;
     --color-hardware: #1582e2;
     --color-software: #28ae59;
     --color-mechanical: #e97131;
@@ -52,4 +52,34 @@ h2 {
 
 .leading-relaxed {
   line-height: var(--line-height-body);
+}
+
+.blurring-text-card {
+  background-color: rgba(18,17,21,0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  border-radius: 1.5rem;
+  box-shadow: 0 0 25px 20px rgba(18, 17, 21, 0.7);
+}
+
+.headshot-glow {
+  box-shadow: 0 0 25px 12px rgba(18, 17, 21, 0.7);
+  border-radius: 9999px;
+}
+
+.project-image-glow {
+  background-color: rgba(18,17,21,0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0 0 30px 20px rgba(18, 17, 21, 0.9);
+}
+
+.blur-heading {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  border-radius: 9999px;
+  background-color: rgba(18,17,21,0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  box-shadow: 0 0 25px 16px rgba(18, 17, 21, 0.7);
 }

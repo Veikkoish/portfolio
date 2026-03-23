@@ -1,0 +1,76 @@
+<canvas id="bg-canvas"></canvas>
+
+<style>
+  #bg-canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('bg-canvas') as HTMLCanvasElement | null;
+  const ctx = canvas?.getContext('2d');
+
+  if (!canvas || !ctx) {
+    console.warn('BackgroundCanvas: canvas or 2D context not available');
+  } else {
+    const SPACING = 40;
+    const RADIUS = 1.2;
+    const ALPHA = 0.28;
+
+    const BASE_HUE = 225;      // blue-gray anchor
+    const HUE_RANGE = 100;      // hue can swing ±40 deg (so ~185–265, blue to violet)
+    const SATURATION = 58;     // keep very desaturated
+    const LIGHTNESS = 72;
+
+    const NOISE_SCALE = 0.0035;
+    const TIME_SCALE = 0.00012;
+
+    function noise(x: number, y: number, t: number): number {
+      return (
+        Math.sin(x * 1.0 + t * 1.0) * Math.cos(y * 0.8 + t * 0.7) +
+        Math.sin(x * 1.7 + t * 1.4) * Math.cos(y * 1.5 + t * 0.9) * 0.5 +
+        Math.sin(x * 2.8 + t * 0.7) * Math.cos(y * 2.3 + t * 1.2) * 0.25
+      ) / 1.75;
+    }
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function render(time: number) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const t = time * TIME_SCALE;
+      const cols = Math.ceil(canvas.width / SPACING) + 2;
+      const rows = Math.ceil(canvas.height / SPACING) + 2;
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const x = col * SPACING;
+          const y = row * SPACING;
+
+          const n = noise(x * NOISE_SCALE, y * NOISE_SCALE, t);
+          const hue = BASE_HUE + n * HUE_RANGE;
+
+          ctx.fillStyle = `hsla(${hue.toFixed(1)}, ${SATURATION}%, ${LIGHTNESS}%, ${ALPHA})`;
+          ctx.beginPath();
+          ctx.arc(x, y, RADIUS, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      requestAnimationFrame(render);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(render);
+  }
+</script>
