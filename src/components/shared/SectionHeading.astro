@@ -1,10 +1,11 @@
 ---
 interface Props {
   level?: 2 | 3 | 4;
+  blur?: boolean;
   class?: string;
 }
 
-const { level = 2, class: className = '' } = Astro.props;
+const { level = 2, blur = false, class: className = '' } = Astro.props;
 
 const baseClass = 'font-bold font-display';
 const sizeClasses = {
@@ -12,9 +13,9 @@ const sizeClasses = {
   3: 'text-lg md:text-xl mb-4 md:mb-6',
   4: 'text-base md:text-lg mb-3 text-gray-200',
 };
+const blurClass = blur ? 'blur-glass blur-glass--heading' : '';
 ---
 
-{level === 2 && <h2 class={`${baseClass} ${sizeClasses[2]} ${className}`}><slot /></h2>}
-{level === 3 && <h3 class={`${baseClass} ${sizeClasses[3]} ${className}`}><slot /></h3>}
-{level === 4 && <h4 class={`${baseClass} ${sizeClasses[4]} ${className}`}><slot /></h4>}
-
+{level === 2 && <h2 class:list={[baseClass, sizeClasses[2], className]}>{blur ? <span class={blurClass}><slot /></span> : <slot />}</h2>}
+{level === 3 && <h3 class:list={[baseClass, sizeClasses[3], className]}>{blur ? <span class={blurClass}><slot /></span> : <slot />}</h3>}
+{level === 4 && <h4 class:list={[baseClass, sizeClasses[4], className]}>{blur ? <span class={blurClass}><slot /></span> : <slot />}</h4>}

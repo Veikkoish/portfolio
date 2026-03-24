@@ -10,10 +10,13 @@ const BASE_URL = import.meta.env.BASE_URL;
 
 <style>
   .menu-btn {
-    padding: 0.75rem 2rem;
+    padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-weight: 500;
+    font-size: 0.875rem;
     background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow:
@@ -22,6 +25,13 @@ const BASE_URL = import.meta.env.BASE_URL;
     text-decoration: none;
     display: inline-block;
     color: inherit;
+  }
+
+  @media (min-width: 768px) {
+    .menu-btn {
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+    }
   }
 
   .menu-btn:hover {

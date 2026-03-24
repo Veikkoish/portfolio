@@ -5,6 +5,7 @@ import ProjectHeader from '../shared/ProjectHeader.astro';
 import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
+import BlurCard from '../shared/BlurCard.astro';
 import SkillTag from '../SkillTag.astro';
 
 interface Props {
@@ -21,7 +22,7 @@ const { project } = Astro.props;
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
-      <SectionHeading class="blur-heading">Overview</SectionHeading>
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         {project.overview?.map((section) => (
           section.image ? (
@@ -30,19 +31,19 @@ const { project } = Astro.props;
                 <img src={section.image} alt={project.title} class="rounded-2xl w-full" />
               </div>
               <div class="w-full md:w-1/2">
-                <div class="blurring-text-card p-4">
+                <BlurCard class="p-4">
                   <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                     {section.description}
                   </p>
-                </div>
+                </BlurCard>
               </div>
             </div>
           ) : (
-            <div class="blurring-text-card p-4">
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-left">
+            <BlurCard class="py-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                 {section.description}
               </p>
-            </div>
+            </BlurCard>
           )
         ))}
       </div>
@@ -50,14 +51,14 @@ const { project } = Astro.props;
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading class="blur-heading">Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
         ))}
       </div>
       
-      <SectionHeading level={3} class="blur-heading">Hardware</SectionHeading>
+      <SectionHeading level={3} blur>Hardware</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <div class="project-image-glow rounded-2xl">
           <img
@@ -91,9 +92,7 @@ const { project } = Astro.props;
         </div>
       </div>
       
-      <div class="inline-block blurring-text-card px-4 py-2 mt-8 md:mt-12 mb-4 md:mb-6">
-        <SectionHeading level={3}>Materials</SectionHeading>
-      </div>
+      <SectionHeading level={3} blur class="mt-8 md:mt-12">Materials</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
         <div class="project-image-glow rounded-2xl">
           <img
@@ -117,47 +116,55 @@ const { project } = Astro.props;
           />
         </div>
       </div>
-      <div class="blurring-text-card p-4 mt-4 md:mt-6">
-        <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+      <BlurCard class="py-4 mt-4 md:mt-6">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
           The frame is CNC machined from acacia wood. The backboard for V3 was resin-printed, while V4's backboard was CNC machined from ABS to develop it closer toward injection molding. The diffuser is 60% translucent and coated with a diffusing spray to hide the solar cells while allowing sufficient light transmission to continuously charge the device.
         </p>
-      </div>
+      </BlurCard>
       
-      <SectionHeading level={3} class="mt-8 md:mt-12 blur-heading">Specifications</SectionHeading>
+      <SectionHeading level={3} blur class="mt-8 md:mt-12">Specifications</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-base md:text-lg">
         <div class="space-y-6">
-          <div class="blurring-text-card p-4">
-            <h4 class="text-lg font-semibold mb-2 text-gray-200">Display</h4>
-            <ul class="space-y-1 text-gray-300">
-              <li><span class="text-gray-400">Size:</span> 13.3 inches (27 x 20 cm)</li>
-              <li><span class="text-gray-400">Resolution:</span> 1600 x 1200 pixels</li>
-              <li><span class="text-gray-400">Grayscale Depth:</span> 256 shades</li>
+          <div class="space-y-3">
+            <h4 class="text-lg font-semibold text-gray-200">
+              <BlurCard variant="inline">Display</BlurCard>
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li><BlurCard variant="inline"><span class="text-gray-400">Size:</span> 13.3 inches (27 x 20 cm)</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Resolution:</span> 1600 x 1200 pixels</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Grayscale Depth:</span> 256 shades</BlurCard></li>
             </ul>
           </div>
-          <div class="blurring-text-card p-4">
-            <h4 class="text-lg font-semibold mb-2 text-gray-200">Frame</h4>
-            <ul class="space-y-1 text-gray-300">
-              <li><span class="text-gray-400">Measurements:</span> 17 x 14 inches (44 x 36 cm)</li>
-              <li><span class="text-gray-400">Material:</span> Acacia hardwood</li>
-              <li><span class="text-gray-400">Mounting:</span> Rotating wall mount</li>
+          <div class="space-y-3">
+            <h4 class="text-lg font-semibold text-gray-200">
+              <BlurCard variant="inline">Frame</BlurCard>
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li><BlurCard variant="inline"><span class="text-gray-400">Measurements:</span> 17 x 14 inches (44 x 36 cm)</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Material:</span> Acacia hardwood</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Mounting:</span> Rotating wall mount</BlurCard></li>
             </ul>
           </div>
         </div>
         <div class="space-y-6">
-          <div class="blurring-text-card p-4">
-            <h4 class="text-lg font-semibold mb-2 text-gray-200">Energy</h4>
-            <ul class="space-y-1 text-gray-300">
-              <li><span class="text-gray-400">Battery Capacity:</span> 12,000 mAh</li>
-              <li><span class="text-gray-400">Battery Life:</span> Over 1 year</li>
-              <li><span class="text-gray-400">Charging Port:</span> USB-C</li>
+          <div class="space-y-3">
+            <h4 class="text-lg font-semibold text-gray-200">
+              <BlurCard variant="inline">Energy</BlurCard>
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li><BlurCard variant="inline"><span class="text-gray-400">Battery Capacity:</span> 12,000 mAh</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Battery Life:</span> Over 1 year</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Charging Port:</span> USB-C</BlurCard></li>
             </ul>
           </div>
-          <div class="blurring-text-card p-4">
-            <h4 class="text-lg font-semibold mb-2 text-gray-200">Other Features</h4>
-            <ul class="space-y-1 text-gray-300">
-              <li><span class="text-gray-400">Connectivity:</span> Wi-Fi and Bluetooth LE</li>
-              <li><span class="text-gray-400">Internal Storage:</span> 4 GB</li>
-              <li><span class="text-gray-400">Buttons:</span> Sync and Reset</li>
+          <div class="space-y-3">
+            <h4 class="text-lg font-semibold text-gray-200">
+              <BlurCard variant="inline">Other Features</BlurCard>
+            </h4>
+            <ul class="space-y-2 text-gray-300">
+              <li><BlurCard variant="inline"><span class="text-gray-400">Connectivity:</span> Wi-Fi and Bluetooth LE</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Internal Storage:</span> 4 GB</BlurCard></li>
+              <li><BlurCard variant="inline"><span class="text-gray-400">Buttons:</span> Sync and Reset</BlurCard></li>
             </ul>
           </div>
         </div>
@@ -166,16 +173,14 @@ const { project } = Astro.props;
 
     <!-- Process Section -->
     <section id="process" class="section-content scroll-mt-32">
-      <SectionHeading class="blur-heading">Process</SectionHeading>
+      <SectionHeading blur>Process</SectionHeading>
       
-      <SectionHeading level={3}>
-        <span class="blur-heading">V1</span>
-      </SectionHeading>
-      <div class="blurring-text-card p-4 mb-6 md:mb-8">
-        <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+      <SectionHeading level={3} blur>V1</SectionHeading>
+      <BlurCard class="py-4 mb-6 md:mb-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
           The first version was done with an acrylic backplate and different boards soldered together on a resin printed holder and had individual solar cells soldered together on nickel strips.
         </p>
-      </div>
+      </BlurCard>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mb-10 md:mb-16">
         <div class="h-64 md:h-96 overflow-hidden rounded-2xl project-image-glow">
           <img
@@ -200,9 +205,7 @@ const { project } = Astro.props;
         </div>
       </div>
       
-      <SectionHeading level={3}>
-        <span class="blur-heading">V2</span>
-      </SectionHeading>
+      <SectionHeading level={3} blur>V2</SectionHeading>
       <div class="w-full">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
           <div class="h-64 md:h-96 overflow-hidden rounded-2xl">
@@ -216,11 +219,11 @@ const { project } = Astro.props;
             ></video>
           </div>
           <div class="flex items-center">
-            <div class="blurring-text-card p-4">
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+            <BlurCard class="p-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
                 The form factor turned closer to the final product, and had a better diffuser made from special coated translucent acrylic. And second-generation custom PCB that skipped the display driver IC that the first generation had and instead used low-level driver firmware to drive the display directly with the ESP.
               </p>
-            </div>
+            </BlurCard>
           </div>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -244,9 +247,7 @@ const { project } = Astro.props;
         </div>
       </div>
       
-      <SectionHeading level={3} class="mt-10 md:mt-16">
-        <span class="blur-heading">V3 & V4</span>
-      </SectionHeading>
+      <SectionHeading level={3} blur class="mt-10 md:mt-16">V3 & V4</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
         <div class="h-64 md:h-110 overflow-hidden rounded-2xl project-image-glow">
           <img
@@ -256,11 +257,11 @@ const { project } = Astro.props;
           />
         </div>
         <div class="flex items-center">
-          <div class="blurring-text-card p-4">
-            <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+          <BlurCard class="p-4">
+            <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
               DFM and DFA were the major focuses of V3 and V4. The total number of components was significantly reduced and the backboard was designed for injection molding. The hardware assembly featured a unified solar cell, an improved main logic board with refined power architecture, production opimizations, and SD card holder, and a secondary board with button and USB-C port, connected via ribbon cable.
             </p>
-          </div>
+          </BlurCard>
         </div>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -283,14 +284,14 @@ const { project } = Astro.props;
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading class="blur-heading">Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <div class="space-y-4 md:space-y-6">
-        <div class="blurring-text-card p-4">
-          <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+        <BlurCard class="py-4">
+          <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
             For more information about the project, including technical specifications, repositories, and the latest updates, visit the official project website.
           </p>
-        </div>
-        <div class="blurring-text-card inline-block p-3">
+        </BlurCard>
+        <BlurCard variant="inline" class="p-3">
           <a
             href="https://omniframe.org"
             target="_blank"
@@ -300,7 +301,7 @@ const { project } = Astro.props;
           >
             Visit omniframe.org →
           </a>
-        </div>
+        </BlurCard>
       </div>
     </section>
 

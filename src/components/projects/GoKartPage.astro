@@ -6,6 +6,7 @@ import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
 import ImageGrid from '../shared/ImageGrid.astro';
+import BlurCard from '../shared/BlurCard.astro';
 
 interface Props {
   project: Project;
@@ -30,6 +31,7 @@ const galleryImages = [
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         {project.overview ? (
           project.overview.map((section) => (
@@ -39,17 +41,19 @@ const galleryImages = [
                   <img src={section.image} alt={project.title} class="rounded-2xl w-full" />
                 </div>
                 <div class="w-full md:w-1/2">
-                  <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
-                    {section.description}
-                  </p>
+                  <BlurCard class="p-4">
+                    <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
+                      {section.description}
+                    </p>
+                  </BlurCard>
                 </div>
               </div>
             ) : (
-              <div>
-                <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-left">
+              <BlurCard class="py-4">
+                <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                   {section.description}
                 </p>
-              </div>
+              </BlurCard>
             )
           ))
         ) : (
@@ -58,9 +62,11 @@ const galleryImages = [
               <img src={project.image} alt={project.title} class="rounded-2xl w-full" />
             </div>
             <div class="w-full md:w-1/2">
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
-                {project.description}
-              </p>
+              <BlurCard class="p-4">
+                <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+                  {project.description}
+                </p>
+              </BlurCard>
             </div>
           </div>
         )}
@@ -69,7 +75,7 @@ const galleryImages = [
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <ImageGrid images={galleryImages} cols={2} />
     </section>
 

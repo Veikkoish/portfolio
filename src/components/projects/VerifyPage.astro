@@ -5,6 +5,7 @@ import ProjectHeader from '../shared/ProjectHeader.astro';
 import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
+import BlurCard from '../shared/BlurCard.astro';
 import SkillTag from '../SkillTag.astro';
 
 interface Props {
@@ -21,6 +22,7 @@ const { project } = Astro.props;
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         {project.overview?.map((section) => (
           section.image ? (
@@ -29,17 +31,19 @@ const { project } = Astro.props;
                 <img src={section.image} alt={project.title} class="rounded-2xl w-full" />
               </div>
               <div class="w-full md:w-1/2">
-                <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
-                  {section.description}
-                </p>
+                <BlurCard class="p-4">
+                  <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
+                    {section.description}
+                  </p>
+                </BlurCard>
               </div>
             </div>
           ) : (
-            <div>
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-left">
+            <BlurCard class="py-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                 {section.description}
               </p>
-            </div>
+            </BlurCard>
           )
         ))}
       </div>
@@ -47,20 +51,22 @@ const { project } = Astro.props;
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading>Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-8 md:mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
         ))}
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed">
-        The React-based extension injects a highlighter into the active tab via the Chrome Scripting API, extracts the page text, and streams analysis results back to the UI. The frontend, built with Tailwind CSS, communicates with a Node.js/Express backend that extracts key claims, checks them first against the Google Fact Check API, then uses Google's Gemini model with web search for corroboration. Results arrive via Server-Sent Events, so claims and highlights appear incrementally on the page, with inline hover/click details and a summary panel in the popup. Additional features include searching for additional sources on individual claims and performing deep research on broader topics.
-      </p>
+      <BlurCard class="py-4">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          The React-based extension injects a highlighter into the active tab via the Chrome Scripting API, extracts the page text, and streams analysis results back to the UI. The frontend, built with Tailwind CSS, communicates with a Node.js/Express backend that extracts key claims, checks them first against the Google Fact Check API, then uses Google's Gemini model with web search for corroboration. Results arrive via Server-Sent Events, so claims and highlights appear incrementally on the page, with inline hover/click details and a summary panel in the popup. Additional features include searching for additional sources on individual claims and performing deep research on broader topics.
+        </p>
+      </BlurCard>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 items-start">
         <div class="space-y-2">
           <img

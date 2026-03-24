@@ -1,0 +1,14 @@
+---
+interface Props {
+  variant?: 'block' | 'heading' | 'inline';
+  class?: string;
+}
+
+const { variant = 'block', class: className = '' } = Astro.props;
+
+const modifierClass = variant !== 'block' ? `blur-glass--${variant}` : '';
+---
+
+<div class:list={['blur-glass', modifierClass, className]}>
+  <slot />
+</div>

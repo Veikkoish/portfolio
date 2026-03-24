@@ -5,6 +5,7 @@ import ProjectHeader from '../shared/ProjectHeader.astro';
 import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
+import BlurCard from '../shared/BlurCard.astro';
 import SkillTag from '../SkillTag.astro';
 
 interface Props {
@@ -21,6 +22,7 @@ const { project } = Astro.props;
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-center">
           <div class="w-full md:w-1/2">
@@ -33,9 +35,11 @@ const { project } = Astro.props;
             ></video>
           </div>
           <div class="w-full md:w-1/2">
-            <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
-              {project.overview?.[0]?.description || project.description}
-            </p>
+            <BlurCard class="p-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
+                {project.overview?.[0]?.description || project.description}
+              </p>
+            </BlurCard>
           </div>
         </div>
       </div>
@@ -43,23 +47,27 @@ const { project } = Astro.props;
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading>Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-8 md:mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
         ))}
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed">
-        The assistant uses Anthropic's models because they do well at maintaining character. Mac can answer difficult questions across any domain while keeping his personality consistent throughout conversations.
-      </p>
+      <BlurCard class="py-4">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          The assistant uses Anthropic's models because they do well at maintaining character. Mac can answer difficult questions across any domain while keeping his personality consistent throughout conversations.
+        </p>
+      </BlurCard>
     </section>
 
     <!-- Process Section -->
     <section id="process" class="section-content scroll-mt-32">
-      <SectionHeading>Process</SectionHeading>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-6 md:mb-8">
-        The CAD portion of the project is done and the parts are currently being printed with resin. Meanwhile, I'm working on the iOS app. Once I have the prints, the surface finishing will take place to replicate the iMac G4 look.
-      </p>
+      <SectionHeading blur>Process</SectionHeading>
+      <BlurCard class="py-4 mb-6 md:mb-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          The CAD portion of the project is done and the parts are currently being printed with resin. Meanwhile, I'm working on the iOS app. Once I have the prints, the surface finishing will take place to replicate the iMac G4 look.
+        </p>
+      </BlurCard>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-8 md:mb-12">
         <img
           src={publicPath('Hey Mac/cad1.webp')}
@@ -99,7 +107,7 @@ const { project } = Astro.props;
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <p class="text-gray-400">Gallery images coming soon.</p>
     </section>
 

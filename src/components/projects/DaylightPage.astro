@@ -6,6 +6,7 @@ import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
 import SkillTag from '../SkillTag.astro';
+import BlurCard from '../shared/BlurCard.astro';
 
 interface Props {
   project: Project;
@@ -26,6 +27,7 @@ const galleryImages = [
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         {project.overview?.[0] && (
           <div class={`flex flex-col md:flex-row gap-6 md:gap-12 items-center ${project.overview[0].imagePosition === 'right' ? 'md:flex-row-reverse' : ''}`}>
@@ -35,9 +37,11 @@ const galleryImages = [
               </div>
             )}
             <div class="w-full md:w-1/2">
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
-                {project.overview[0].description}
-              </p>
+              <BlurCard class="p-4">
+                <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
+                  {project.overview[0].description}
+                </p>
+              </BlurCard>
             </div>
           </div>
         )}
@@ -58,17 +62,19 @@ const galleryImages = [
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading>Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-8 md:mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
         ))}
       </div>
       
-      <SectionHeading level={3}>Schematics</SectionHeading>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-6 md:mb-8">
-        The device receives DisplayPort input through a USB-C port on the headband behind the left ear. A diverging cable splits the connection to both a power supply unit, which supplies the various voltages required by the main logic board and displays, and the data connection to the main logic board. The main logic board features a display driver IC (LT7911D), an STM32-based microcontroller, and a 9-axis IMU that detects and adjusts the output image according to the user's head movements. A touchpad board with a touch IC is located on the right temple of the device for user input.
-      </p>
+      <SectionHeading level={3} blur>Schematics</SectionHeading>
+      <BlurCard class="py-4 mb-6 md:mb-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          The device receives DisplayPort input through a USB-C port on the headband behind the left ear. A diverging cable splits the connection to both a power supply unit, which supplies the various voltages required by the main logic board and displays, and the data connection to the main logic board. The main logic board features a display driver IC (LT7911D), an STM32-based microcontroller, and a 9-axis IMU that detects and adjusts the output image according to the user's head movements. A touchpad board with a touch IC is located on the right temple of the device for user input.
+        </p>
+      </BlurCard>
       <div class="space-y-6 md:space-y-8">
         <div>
           <h4 class="text-base md:text-lg font-semibold mb-3 text-gray-200">Main Logic Board</h4>
@@ -108,7 +114,7 @@ const galleryImages = [
         </div>
       </div>
       
-      <SectionHeading level={3} class="mt-8 md:mt-12">PCB Layouts</SectionHeading>
+      <SectionHeading level={3} blur class="mt-8 md:mt-12">PCB Layouts</SectionHeading>
       <div class="space-y-4 md:space-y-6">
         <div class="space-y-2">
           <img
@@ -149,7 +155,7 @@ const galleryImages = [
 
     <!-- Process Section -->
     <section id="process" class="section-content scroll-mt-32">
-      <SectionHeading>Process</SectionHeading>
+      <SectionHeading blur>Process</SectionHeading>
       <div class="space-y-4 md:space-y-6 mb-6 md:mb-8 flex flex-col items-center">
         <img
           src={publicPath('Daylight/dev board.webp')}
@@ -160,9 +166,11 @@ const galleryImages = [
           This was the development board for driving these displays.
         </p>
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-6 md:mb-8">
-        To rapidly iterate on waveguide prototypes, I built a testing setup that allowed me to quickly swap between different waveguide designs. This modular approach enabled efficient evaluation of optical performance and helped identify the most promising designs for further development.
-      </p>
+      <BlurCard class="py-4 mb-6 md:mb-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          To rapidly iterate on waveguide prototypes, I built a testing setup that allowed me to quickly swap between different waveguide designs. This modular approach enabled efficient evaluation of optical performance and helped identify the most promising designs for further development.
+        </p>
+      </BlurCard>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
         <div class="h-48 md:h-64 overflow-hidden rounded-2xl">
           <img
@@ -186,14 +194,16 @@ const galleryImages = [
           />
         </div>
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mt-6 md:mt-8">
-        The optics design proved to be more complex than I initially anticipated, requiring resources and expertise beyond what I could provide independently. I reached out to potential collaborators at the university and explored partnerships with private companies specializing in optical systems, but unfortunately, these efforts didn't materialize into a viable path forward for the project.
-      </p>
+      <BlurCard class="py-4 mt-6 md:mt-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          The optics design proved to be more complex than I initially anticipated, requiring resources and expertise beyond what I could provide independently. I reached out to potential collaborators at the university and explored partnerships with private companies specializing in optical systems, but unfortunately, these efforts didn't materialize into a viable path forward for the project.
+        </p>
+      </BlurCard>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {galleryImages.map((img) => (
           <img

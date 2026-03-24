@@ -5,6 +5,7 @@ import ProjectHeader from '../shared/ProjectHeader.astro';
 import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
+import BlurCard from '../shared/BlurCard.astro';
 import SkillTag from '../SkillTag.astro';
 
 interface Props {
@@ -38,6 +39,7 @@ const processMedia = [
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         {project.overview?.map((section) => (
           section.image ? (
@@ -46,17 +48,19 @@ const processMedia = [
                 <img src={section.image} alt={project.title} class="rounded-2xl w-full" />
               </div>
               <div class="w-full md:w-1/2">
-                <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
-                  {section.description}
-                </p>
+                <BlurCard class="p-4">
+                  <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
+                    {section.description}
+                  </p>
+                </BlurCard>
               </div>
             </div>
           ) : (
-            <div>
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-left">
+            <BlurCard class="py-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                 {section.description}
               </p>
-            </div>
+            </BlurCard>
           )
         ))}
       </div>
@@ -64,16 +68,18 @@ const processMedia = [
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading>Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-8 md:mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
         ))}
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-6 md:mb-8">
-        The board uses an Arduino Mega 2560 to communicate with a mobile phone via Bluetooth to get the voice commands for players' moves. The pieces are moved by a magnet that moves on a 2D-Gantry featuring low-profile stepper motors, timing belts, and servo-attached magnet that moves vertically to engage with the pieces. Early iterations used an electromagnet but the permanent magnet system was found to be smoother and more reliable. To enable users to also use manual moves instead of playing with only voice, a hall-effect sensor matrix was added directly under the pieces.
-      </p>
-      <SectionHeading level={3}>Hardware System Diagram</SectionHeading>
+      <BlurCard class="py-4 mb-6 md:mb-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          The board uses an Arduino Mega 2560 to communicate with a mobile phone via Bluetooth to get the voice commands for players' moves. The pieces are moved by a magnet that moves on a 2D-Gantry featuring low-profile stepper motors, timing belts, and servo-attached magnet that moves vertically to engage with the pieces. Early iterations used an electromagnet but the permanent magnet system was found to be smoother and more reliable. To enable users to also use manual moves instead of playing with only voice, a hall-effect sensor matrix was added directly under the pieces.
+        </p>
+      </BlurCard>
+      <SectionHeading level={3} blur>Hardware System Diagram</SectionHeading>
       <div class="mt-6 md:mt-8 flex justify-center">
         <img
           src={publicPath('RoboChess/Robo_diagram.webp')}
@@ -85,10 +91,12 @@ const processMedia = [
 
     <!-- Process Section -->
     <section id="process" class="section-content scroll-mt-32">
-      <SectionHeading>Process</SectionHeading>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-6 md:mb-8">
-        Unfortunately, this project was poorly documented. The design and fabrication of this project was completed in full between October and December of 2022.
-      </p>
+      <SectionHeading blur>Process</SectionHeading>
+      <BlurCard class="py-4 mb-6 md:mb-8">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          Unfortunately, this project was poorly documented. The design and fabrication of this project was completed in full between October and December of 2022.
+        </p>
+      </BlurCard>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {processMedia.map((item) => (
           <div class={`space-y-2 ${item.fullSize ? '' : 'flex flex-col items-center'}`}>
@@ -116,7 +124,7 @@ const processMedia = [
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {galleryImages.map((img) => (
           <img

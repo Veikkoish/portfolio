@@ -5,6 +5,7 @@ import ProjectHeader from '../shared/ProjectHeader.astro';
 import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
+import BlurCard from '../shared/BlurCard.astro';
 import SkillTag from '../SkillTag.astro';
 
 interface Props {
@@ -21,6 +22,7 @@ const { project } = Astro.props;
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         {project.overview?.map((section) => (
           section.image ? (
@@ -29,17 +31,19 @@ const { project } = Astro.props;
                 <img src={section.image} alt={project.title} class="rounded-2xl w-full" />
               </div>
               <div class="w-full md:w-1/2">
-                <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
-                  {section.description}
-                </p>
+                <BlurCard class="p-4">
+                  <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
+                    {section.description}
+                  </p>
+                </BlurCard>
               </div>
             </div>
           ) : (
-            <div>
-              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-left">
+            <BlurCard class="py-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed whitespace-pre-line text-justify">
                 {section.description}
               </p>
-            </div>
+            </BlurCard>
           )
         ))}
       </div>
@@ -47,7 +51,7 @@ const { project } = Astro.props;
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading>Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
@@ -62,16 +66,18 @@ const { project } = Astro.props;
           />
         </div>
         <div class="w-full md:w-1/2">
-          <p class="text-base md:text-lg text-gray-300 leading-relaxed">
-            This is easily the smallest physical size product I've ever built. To save time and money, I deciced to use the Adafruit Feather ThinkInk board instead of making a custom PCB. The device also features a 2000 mAh LiPo battery for a years-long battery life, a USB-C port for charging and reprogramming, a pinhole reset button in the back and two buttons in the front for scrolling.
-          </p>
+          <BlurCard class="p-4">
+            <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+              This is easily the smallest physical size product I've ever built. To save time and money, I deciced to use the Adafruit Feather ThinkInk board instead of making a custom PCB. The device also features a 2000 mAh LiPo battery for a years-long battery life, a USB-C port for charging and reprogramming, a pinhole reset button in the back and two buttons in the front for scrolling.
+            </p>
+          </BlurCard>
         </div>
       </div>
     </section>
 
     <!-- Process Section -->
     <section id="process" class="section-content scroll-mt-32">
-      <SectionHeading>Process</SectionHeading>
+      <SectionHeading blur>Process</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
         <div class="space-y-4">
           <img
@@ -167,14 +173,16 @@ const { project } = Astro.props;
           </p>
         </div>
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed">
-        Routing the USB-C port to the outside of the enclosure turned out to take a huge amount of time because of the spatial constraints. If I were to build this again, I would implement everything necessary from Adafruit's design to a better form factor for the enclosure. This would eliminate the need for the secondary Type-C port and would allow to put the battery next to the board as opposed under it. This would save almost half of the thickness of the device. Maybe I'll do this for another anniversary years from now to also compare how far E-Ink technology has come.
-      </p>
+      <BlurCard class="py-4">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          Routing the USB-C port to the outside of the enclosure turned out to take a huge amount of time because of the spatial constraints. If I were to build this again, I would implement everything necessary from Adafruit's design to a better form factor for the enclosure. This would eliminate the need for the secondary Type-C port and would allow to put the battery next to the board as opposed under it. This would save almost half of the thickness of the device. Maybe I'll do this for another anniversary years from now to also compare how far E-Ink technology has come.
+        </p>
+      </BlurCard>
     </section>
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <img
           src={publicPath('Memory Player/size_comparison.webp')}

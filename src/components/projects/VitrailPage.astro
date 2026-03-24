@@ -5,6 +5,7 @@ import ProjectHeader from '../shared/ProjectHeader.astro';
 import ProjectMenu from '../shared/ProjectMenu.astro';
 import SectionHeading from '../shared/SectionHeading.astro';
 import BackButton from '../shared/BackButton.astro';
+import BlurCard from '../shared/BlurCard.astro';
 import SkillTag from '../SkillTag.astro';
 
 interface Props {
@@ -21,15 +22,18 @@ const { project } = Astro.props;
   <div class="max-w-6xl mx-auto space-y-16 md:space-y-24">
     <!-- Overview Section -->
     <section id="overview" class="section-content scroll-mt-32">
+      <SectionHeading blur>Overview</SectionHeading>
       <div class="space-y-10 md:space-y-16">
         <div class="flex flex-col md:flex-row gap-6 md:gap-12 items-center">
           <div class="w-full md:w-1/2">
             <img src={project.image} alt={project.title} class="rounded-2xl w-full" />
           </div>
           <div class="w-full md:w-1/2">
-            <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
-              {project.description}
-            </p>
+            <BlurCard class="p-4">
+              <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+                {project.description}
+              </p>
+            </BlurCard>
           </div>
         </div>
       </div>
@@ -37,7 +41,7 @@ const { project } = Astro.props;
 
     <!-- Technology Section -->
     <section id="technology" class="section-content scroll-mt-32">
-      <SectionHeading>Technology</SectionHeading>
+      <SectionHeading blur>Technology</SectionHeading>
       <div class="flex flex-wrap gap-3 mb-8 md:mb-12">
         {project.skills.map((skill) => (
           <SkillTag name={skill.name} category={skill.category} />
@@ -79,7 +83,7 @@ const { project } = Astro.props;
 
     <!-- Process Section -->
     <section id="process" class="section-content scroll-mt-32">
-      <SectionHeading>Process</SectionHeading>
+      <SectionHeading blur>Process</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mb-4 md:mb-6">
         <div class="space-y-2">
           <img
@@ -114,9 +118,11 @@ const { project } = Astro.props;
           class="rounded-2xl w-full"
         />
       </div>
-      <p class="text-base md:text-lg text-gray-300 leading-relaxed mb-4 md:mb-6">
-        Initially, I used these Dayton Audio ND105-4 4" Aluminum Cone Midbass Neo Driver 4 Ohm drivers, but later upgraded to the RS100 drivers and also made a new front baffle that was 1 mm thinner to make the grid sit more flush with the design.
-      </p>
+      <BlurCard class="py-4 mb-4 md:mb-6">
+        <p class="text-base md:text-lg text-gray-300 leading-relaxed text-justify">
+          Initially, I used these Dayton Audio ND105-4 4" Aluminum Cone Midbass Neo Driver 4 Ohm drivers, but later upgraded to the RS100 drivers and also made a new front baffle that was 1 mm thinner to make the grid sit more flush with the design.
+        </p>
+      </BlurCard>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
         <div class="space-y-2">
           <img
@@ -143,7 +149,7 @@ const { project } = Astro.props;
 
     <!-- Gallery Section -->
     <section id="gallery" class="section-content scroll-mt-32">
-      <SectionHeading>Gallery</SectionHeading>
+      <SectionHeading blur>Gallery</SectionHeading>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         <img
           src={publicPath('Vitrail/1.webp')}
